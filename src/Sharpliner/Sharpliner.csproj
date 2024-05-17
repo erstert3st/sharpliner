@@ -47,11 +47,11 @@
   </ItemGroup>
 
   <!-- This guarantees that the folder for the dependencies is created before the restore -->
-
-    <Target Name="PreRestoreTarget" BeforeTargets="Restore">
-      <Exec Condition=" '$(OS)' == 'Windows_NT' " Command='powershell -ExecutionPolicy Bypass -File "$(ProjectDir)..\..\eng\scripts\build-dependencies.ps1" false'  />
-      <Exec Condition=" '$(OS)' != 'Windows_NT' " Command='bash "$(ProjectDir)scripts/createDirectory.sh" ' />
-    </Target>
+  
+    <Target Name="PreRestoreTarget" BeforeTargets="CollectPackageReferences">
+    <Exec Condition=" '$(OS)' == 'Windows_NT' " Command='powershell -ExecutionPolicy Bypass -File "$(ProjectDir)..\..\eng\scripts\build-dependencies.ps1" false'  />
+    <Exec Condition=" '$(OS)' != 'Windows_NT' " Command='bash "$(ProjectDir)scripts/createDirectory.sh" ' />
+  </Target>
 
   <!--
     This Target makes sure we include YamlDotNet.dll in the NuGet as it will be needed by the task
