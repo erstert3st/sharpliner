@@ -22,6 +22,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eng", "eng", "{4F21BBD4-0FBF-43FA-94E8-3119F47DD493}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sharpliner.CI", "eng\Sharpliner.CI\Sharpliner.CI.csproj", "{DABB7F89-37B9-4AC8-9FEA-DCDE0B1E8DE0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{14F6E156-9E87-4B14-9B7A-C7A83101A795} = {14F6E156-9E87-4B14-9B7A-C7A83101A795}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E2E.Tests.SharplinerLibrary", "tests\E2E.Tests\SharplinerLibrary\E2E.Tests.SharplinerLibrary.csproj", "{56278FA7-2A5D-4CFA-AAE4-89BF446CEAA7}"
 EndProject

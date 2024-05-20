@@ -3,7 +3,11 @@
   <PropertyGroup>
     <TaskAssembly>$(MSBuildThisFileDirectory)..\lib\net8.0\Sharpliner.dll</TaskAssembly>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
   </PropertyGroup>
+
+
 
   <UsingTask TaskName="Sharpliner.PublishDefinitions" AssemblyFile="$(TaskAssembly)" />
 </Project>

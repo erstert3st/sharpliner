@@ -17,19 +17,18 @@
     This project mimics the external usage of Sharpliner libraries to publish this repo's pipeline.
 
     To correctly re-build this project so that it consumes the latest code changes, we have to:
-    1. Clean NuGet caches
+    1. Clean NuGet caches       <Exec Condition=" '$(OS)' != 'Windows_NT' " Command='"$(ProjectDir)../scripts/clean-dependencies.sh" ' />
+
     3. Create Sharpliner and Sharpliner.CI nupkgs
     5. Restore this project from those
   -->
 
-  <Target Name="CleanDependencies" AfterTargets="Clean">
-    <Exec Condition=" '$(OS)' != 'Windows_NT' " Command='"$(ProjectDir)../scripts/clean-dependencies.sh" ' />
-    <Exec Condition=" '$(OS)' == 'Windows_NT' " Command='"powershell.exe -NonInteractive -ExecutionPolicy Unrestricted "$(ProjectDir)..\scripts\clean-dependencies.ps1" ' />
+
+
+  <Target Name="CleanDependencies" AfterTargets="AfterClean">
+    <Exec Condition=" '$(OS)' != 'Windows_NT' " Command="&quot;$(ProjectDir)../scripts/clean-dependencies.sh&quot; " />
+    <Exec Condition=" '$(OS)' == 'Windows_NT' " Command=" &quot;nuget locals all -clear&quot; ; if exist  &quot;$(ProjectDir)/artifacts/packages/Release&quot; rd /s /q   &quot;$(ProjectDir)/artifacts/packages/Release&quot;  " />
   </Target>
 
-  <Target Name="BuildDependencies" BeforeTargets="_GenerateRestoreProjectSpec">
-    <Exec Condition=" '$(OS)' != 'Windows_NT' " Command='"$(ProjectDir)../scripts/build-dependencies.sh" '/>
-    <Exec Condition=" '$(OS)' == 'Windows_NT' " Command='"powershell.exe -NonInteractive -ExecutionPolicy Unrestricted "$(ProjectDir)..\scripts\build-dependencies.ps1" ' />
-  </Target>
-
+  
 </Project>
